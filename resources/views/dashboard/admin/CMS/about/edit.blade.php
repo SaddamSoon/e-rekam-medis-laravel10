@@ -1,0 +1,94 @@
+@extends('dashboard.main')
+@section('content')
+<div class="card shadow mb-4" style="width: 50rem;">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Edit About</h6>
+    </div>
+    <div class="card card-body">
+        <form id="myForm" method="POST" action="{{ route('about.update', $about->id) }}" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+        <label class="" for="img_url">Gambar</label>
+            <div class="row">
+                <div class="col-5 d-block">
+                    <img src="{{ asset('uploads/about/'.$about->img_url) }}" id="img-preview" class="img-fluid" alt="...">
+                </div>
+                <div class="col-5">
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                         <input type="file" class="custom-file-input" id="img_url" name="img_url">
+                         <label class="custom-file-label" for="img_url">Pilih Gambar</label>
+                        </div>
+                    @error('img_url')
+                        <div class="text-danger"><small>{{ $message }}</small></div>
+                    @enderror
+                    </div>
+                </div>
+             </div>
+        <div class="mb-3">
+            <label for="title" class="form-label">Judul</label>
+            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title', $about->title) }}">
+            @error('title')
+                <div class="text-danger"><small>{{ $message }}</small></div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="text_content" class="form-label">Text Konten</label>
+            @error('text_content')
+                <div class="text-danger"><small>{{ $message }}</small></div>
+            @enderror
+            <input type="hidden" name="text_content" id="text_content" value="{{ old('text_content', $about->text_content) }}">
+            <trix-editor input="text_content"></trix-editor>
+        </div>
+        <div class="mb-3">
+            <label for="is_active" class="form-label">Status</label>
+            <select name="is_active" class="custom-select @error('is_active') is-invalid @enderror" id="is_active" value="{{ old('is_active', $about->is_active) }}">
+                    <option value=1>Aktif</option>
+                    <option value=0>Non-Aktif</option>
+            </select>
+            @error('is_active')
+                <div class="text-danger"><small>{{ $message }}</small></div>
+            @enderror
+        </div>
+        <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
+        <button class="btn border-danger mx-3"><a class="text-decoration-none" href="{{ route('about') }}">Batal</a></button>
+    </form>
+    </div>
+</div>
+@endsection
+
+@push('script')
+    <script>
+        let image = document.querySelector('#img_url');
+        let imagePrev = document.querySelector('#img-preview');
+        
+
+        function prevImg(){
+
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // imagePrev.src = '{{ asset("uploads/Image_not_available.png") }}';
+            document.querySelectorAll('.custom-file-input').forEach(function (input) {
+            input.addEventListener('change', function (e) {
+                let reader = new FileReader();
+                reader.readAsDataURL(image.files[0]);
+                reader.onload = function(readerEvent){
+                    imagePrev.src = readerEvent.target.result;
+                    imagePrev.style.display = 'block';
+                };
+                var fileName = e.target.files[0]?.name;
+                if (fileName) {
+                e.target.nextElementSibling.innerText = fileName;
+                }
+            });
+            });
+        });
+
+        document.getElementById('myForm').addEventListener('submit', function() {
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('submitBtn').innerText = 'Menyimpan...'; // opsional
+        });
+    </script>
+@endpush
