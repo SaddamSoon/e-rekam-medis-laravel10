@@ -8,7 +8,7 @@ use App\Models\Poly;
 use Illuminate\Http\Request;
 
 class InfoLayananController extends Controller
-{
+{ 
     public function index(){
         return view('dashboard.admin.cms.layanan.index', [
             'layanan' => LayananTarif::all(),

@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-class WhatsappHelper
+class WhatsAppHelper
 {
     public static function formatNumber($number)
     {
