@@ -11,7 +11,7 @@ class Rekmed extends Model
     use HasFactory;
     protected $table = 'rekam_medis';
     protected $guarded = ['id'];
-    protected $with = ['pasien', 'resep', 'dokter'];
+    protected $with = ['pasien', 'resep', 'dokter','poly'];
 
     public function pasien(){
         return $this->belongsTo(Pasien::class, 'id_pasien', 'id');
@@ -22,5 +22,7 @@ class Rekmed extends Model
     public function dokter(){
         return $this->hasOne(Dokter::class, 'id', 'id_dokter');
     }
-    
+    public function poly(){
+        return $this->belongsTo(Poly::class, 'id_poly', 'id');
+    }
 }

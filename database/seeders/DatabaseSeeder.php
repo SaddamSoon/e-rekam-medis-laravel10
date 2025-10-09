@@ -43,10 +43,12 @@ class DatabaseSeeder extends Seeder
         }
         // Dummy tabel Spesialis
             \App\Models\Spesialis::create([
-            'nama' => 'Dokter Umum'
-            ]);
-            \App\Models\Spesialis::create([
-            'nama' => 'Dokter Gigi'
+            'nama' => 'Dokter Umum',
+            'id_poly' => 2
+        ]);
+        \App\Models\Spesialis::create([
+            'nama' => 'Dokter Gigi',
+            'id_poly' => 2
             ]);
         //Dummy Data Obat
         $obat = [

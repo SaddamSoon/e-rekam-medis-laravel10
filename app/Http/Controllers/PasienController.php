@@ -27,7 +27,7 @@ class PasienController extends Controller
             'alamat' => $request->alamat,
             'tanggal_lahir' => $request->tanggal_lahir,
             'no_hp' => $request->no_hp,
-            'created_by' => rand(1,5)
+            'created_by' => auth()->user()->id
        ]);
 
        return redirect('/dashboard/pasien')->with('success', 'Sukses Tambah Pasien');

@@ -10,7 +10,7 @@ class Dokter extends Model
     use HasFactory;
     protected $table = 'dokter';
     protected $guarded = ['id'];
-    protected $with = ['ket_dok','user','spesialis'];
+    protected $with = ['ket_dok','user','spesialis','poly'];
 
     public function user(){
         return $this->hasOne(User::class, 'id_dokter', 'id');
@@ -20,5 +20,8 @@ class Dokter extends Model
     }
     public function ket_dok(){
         return $this->hasOne(KetDok::class, 'id_dokter', 'id');
+    }
+    public function poly(){
+        return $this->belongsTo(Poly::class, 'id_poly', 'id');
     }
 }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('spesialis_dokter', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->bigInteger('id_poly');
             $table->timestamps();
         });
     }

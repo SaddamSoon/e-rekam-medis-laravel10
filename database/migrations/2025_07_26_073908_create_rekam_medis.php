@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('rekam_medis', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_pasien');
-            $table->bigInteger('id_dokter');
+            $table->bigInteger('id_dokter')->nullable();
+            $table->bigInteger('id_poly');
             $table->date('tgl_periksa');
             $table->string('diagnosa');
             $table->string('tindakan');
-            // $table->string('jenis_layanan');
             $table->timestamps();
         });
     }

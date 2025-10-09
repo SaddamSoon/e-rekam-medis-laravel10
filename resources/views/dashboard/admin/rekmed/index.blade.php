@@ -15,6 +15,7 @@
                                         <tr>
                                             <th>Pasien</th>
                                             <th>Dokter</th>
+                                            <th>Poly</th>
                                             <th>Tindakan</th>
                                             <th>Dibuat pada</th>
                                             @can('isDokter')
@@ -26,6 +27,7 @@
                                         <tr>
                                             <th>Pasien</th>
                                             <th>Dokter</th>
+                                            <th>Poly</th>
                                             <th>Tindakan</th>
                                             <th>Dibuat pada</th>
                                             @can('isDokter')
@@ -37,7 +39,8 @@
                                         @foreach ($rekmed as $rek)
                                             <tr>
                                                 <td>{{ $rek->pasien->nama }}</td>
-                                                <td>drg. {{ $rek->dokter->nama }}</td>
+                                                <td class="{{ isset($rek->dokter->nama)? '' : 'text-danger font-weight-bold'}}">{{ isset($rek->dokter->nama)? $rek->dokter->nama : 'Dokter sudah dihapus'}}</td>
+                                                <td>{{ $rek->poly->nama }}</td>
                                                 <td>{{ $rek->tindakan }}</td>
                                                 <td>{{ $rek->created_at->format('d-m-Y') }}</td>
                                                 @can('isDokter')

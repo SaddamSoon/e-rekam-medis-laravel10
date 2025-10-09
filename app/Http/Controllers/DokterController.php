@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Dokter;
 use App\Models\KetDok;
+use App\Models\Pasien;
+use App\Models\Rekmed;
 use App\Models\User;
 use App\Models\spesialis;
 use Illuminate\Http\Request;
@@ -35,6 +37,7 @@ class DokterController extends Controller
        Dokter::create([
         'nama' => $request->nama,
         'id_spesialis' => $request->id_spesialis,
+        'id_poly' => spesialis::where('id', $request->id_spesialis)->first()->id_poly,
         'no_str' => $request->no_str
        ]);
        KetDok::create([
@@ -101,7 +104,13 @@ class DokterController extends Controller
     }
     
     public function destroy($id){
+        $updateRekmed = Rekmed::where('id_dokter', $id)->update([
+            'id_dokter'  => NULL
+        ]);
         $user = User::where('id_dokter', $id)->first();
+        $updatePasien = Pasien::where('created_by', $user->id_dokter)->update([
+            'created_by' => 1
+        ]);
         $user->delete();
         
         if(KetDok::where('id_dokter', $id)->exists()){

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokter;
 use App\Models\Rekmed;
 use App\Models\Pasien;
 use App\Models\Obat;
@@ -43,7 +44,7 @@ class RekamMedisController extends Controller
             ]);
     }
     public function store(Request $request){
-       
+        $dokter = Dokter::where('id', auth()->user()->id_dokter)->first();
         $validated = [
             'diagnosa' => 'required',
             'tindakan' => 'required',
@@ -61,7 +62,7 @@ class RekamMedisController extends Controller
             $validated['nama_obat.*'] = 'required';
             $validated['ket_dosis.*'] = 'required';
         }
-        // dd($request);
+
         $request->validate($validated);
         if($request->has('nama_text') && $request->nama_text != null){
             Pasien::create([
@@ -77,6 +78,7 @@ class RekamMedisController extends Controller
                 'id_dokter' => auth()->user()->id_dokter,
                 'tgl_periksa' => now(),
                 'diagnosa' => $request->diagnosa,
+                'poly' => $dokter->poly->id,
                 'tindakan' => $request->tindakan
             ]);
 
@@ -102,6 +104,7 @@ class RekamMedisController extends Controller
                 'id_pasien' => $request->nama_select,
                 'id_dokter' => auth()->user()->id_dokter,
                 'tgl_periksa' => now(),
+                'poly' => $dokter->poly->id,
                 'diagnosa' => $request->diagnosa,
                 'tindakan' => $request->tindakan
             ]);

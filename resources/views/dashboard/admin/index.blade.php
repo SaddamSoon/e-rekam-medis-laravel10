@@ -169,7 +169,7 @@
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                Janji Temu</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $janjiTemu }}</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><small class="text-xs text-secondary text-disable">No caption</small></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><small class="text-xs text-secondary text-disable">Hari ini</small></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa-solid fa-book-medical fa-2x text-gray-300"></i>
