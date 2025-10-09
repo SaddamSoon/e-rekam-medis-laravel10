@@ -33,6 +33,17 @@
             @enderror
         </div>
         <div class="mb-3">
+            <label for="link" class="form-label">Link</label>
+            <select name="link" class="custom-select @error('link') is-invalid @enderror" id="link" value="{{ old('link') }}">
+                <option  value="about" {{ $slider->link == 'about'?'selected':'' }}>about</option>
+                <option  value="janjiTemu" {{ $slider->link == 'janjiTemu'?'selected':'' }} >janjiTemu</option>
+                <option  value="layanan-tarif"  {{ $slider->link == 'layanan-tarif'?'selected':'' }}>layanan-tarif</option>
+            </select>
+            @error('link')
+                <div class="text-danger"><small>{{ $message }}</small></div>
+            @enderror
+        </div>
+        <div class="mb-3">
             <label for="order" class="form-label">Urutan</label>
             <select name="order" class="custom-select @error('order') is-invalid @enderror" id="order" value="{{ old('order', $slider->order) }}">
                     @for($i=0;$i<count($order);$i++)

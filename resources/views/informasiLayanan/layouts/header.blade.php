@@ -30,7 +30,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a href="" class="navbar-brand justify-content-start"><img src="{{ asset('img/logo_clinic.png') }}" alt="" width="220rem"></a>
+            <a href="/" class="navbar-brand justify-content-start"><img src="{{ asset('img/logo_clinic.png') }}" alt="" width="220rem"></a>
                     <div class="collapse navbar-collapse justify-content-end me-5" id="navbarText">
                     <ul class="navbar-nav mb-2 mb-lg-0 me-5 text-muted">
                             <li class="nav-item me-5">

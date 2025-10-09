@@ -6,7 +6,9 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Slider</h6>
                         </div>
                         <div class="card-body">
+                            @if(count($slider) < 3)
                             <a href="{{ route('slider.create') }}" class="btn btn-primary mb-3"><i class="fa-solid fa-plus"></i> Slider</a>
+                            @endif
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -33,6 +35,7 @@
                                                 <td>{{ $s->caption }}</td>
                                                 <td>
                                                     <span><a href="/dashboard/slider/{{ $s->id }}" class="text-decoration-none text-warning"><i class="fa-solid fa-pen-to-square"></i></a></span>
+                                                    @if(count($slider)!= 1)
                                                     <span>
                                                         <form class="d-inline" action="{{ route('slider.destroy', $s->id) }}" method="POST">
                                                             @csrf
@@ -40,6 +43,7 @@
                                                             <button class="btn text-danger btn-delete" type="submit" class="text-decoration-none text-danger"><i class="fa-solid fa-trash"></i></button>
                                                         </form>
                                                     </span>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -23,9 +23,15 @@
                     <div class="carousel-caption" data-aos="fade-up" data-aos-delay="200">
                         <div class="caption-content">
                             <p class="caption-text mb-4">{{ $s->caption }}</p>
-                            <button class="btn btn-custom-primary">
+                            @if($s->link != 'layanan-tarif')
+                                <button class="btn btn-custom-primary" id="btn-{{ $s->link }}">
                                 Selengkapnya <i class="fas fa-arrow-right ms-2"></i>
-                            </button>
+                                </button>
+                            @else
+                                <a href="{{ $s->link }}" class="btn btn-custom-primary">
+                                    Cek Tarif Layanan
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -229,6 +235,17 @@
 
 @push('scripts')
 <script>
+
+    document.getElementById('btn-about').addEventListener('click', () => {
+        document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+        history.replaceState(null, null, ' '); // hapus #id dari URL
+        });
+    document.getElementById('btn-janjiTemu').addEventListener('click', () => {
+        document.getElementById('janjiTemu').scrollIntoView({ behavior: 'smooth' });
+        history.replaceState(null, null, ' '); // hapus #id dari URL
+        });
+    
+
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
     });

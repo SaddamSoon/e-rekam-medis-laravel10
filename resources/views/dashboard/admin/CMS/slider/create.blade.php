@@ -32,6 +32,17 @@
             @enderror
         </div>
         <div class="mb-3">
+            <label for="link" class="form-label">Link</label>
+            <select name="link" class="custom-select @error('link') is-invalid @enderror" id="link" value="{{ old('link') }}">
+                <option class="{{ !in_array('about', $link)?'': 'text-danger'}}" value="about" {{ !in_array('about', $link)?'': 'disabled'}}>about</option>
+                <option class="{{ !in_array('janjiTemu', $link)?'': 'text-danger'}}" value="janjiTemu" {{ !in_array('janjiTemu', $link)?'': 'disabled'}}>janjiTemu</option>
+                <option class="{{ !in_array('layanan-tarif', $link)?'': 'text-danger'}}" value="layanan-tarif" {{ !in_array('layanan-tarif', $link)?'': 'disabled'}}>layanan-tarif</option>
+            </select>
+            @error('link')
+                <div class="text-danger"><small>{{ $message }}</small></div>
+            @enderror
+        </div>
+        <div class="mb-3">
             <label for="order" class="form-label">Urutan</label>
             <select name="order" class="custom-select @error('order') is-invalid @enderror" id="order" value="{{ old('order') }}">
                 @if($order[0] == 0)

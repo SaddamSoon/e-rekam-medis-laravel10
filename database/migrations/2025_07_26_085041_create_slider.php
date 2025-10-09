@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('img_url');
             $table->string('caption');
+            $table->enum('link', ['about','janjiTemu','layanan-tarif']);
             $table->integer('order');
             $table->boolean('is_active');
             $table->bigInteger('created_by');
