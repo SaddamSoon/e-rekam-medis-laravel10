@@ -7,7 +7,7 @@ use App\Models\Slider;
 class SliderController extends Controller
 {
     public function index(){
-        return view('dashboard.admin.cms.slider.index', [
+        return view('dashboard.admin.CMS.slider.index', [
             'slider' => Slider::all()
         ]);
     }

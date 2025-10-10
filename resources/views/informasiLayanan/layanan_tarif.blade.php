@@ -16,7 +16,7 @@
                                 @endforeach
                             </select>
                             <div class="table-responsive"  data-aos="fade-right">
-                                <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-custom" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Keluhan</th>
